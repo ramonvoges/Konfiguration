@@ -71,8 +71,7 @@ alias ls='ls --color'
 alias l="exa -lah"
 alias cat="bat --color=always"
 alias fb="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
-alias za="zellij a"
-alias raspi="/usr/bin/git --git-dir=$HOME/.raspi/ --work-tree=$HOME"
+# alias raspi="/usr/bin/git --git-dir=$HOME/.raspi/ --work-tree=$HOME"
 
 # fzf costumizations
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
