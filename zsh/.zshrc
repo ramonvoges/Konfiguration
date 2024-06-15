@@ -91,3 +91,4 @@ export PATH=/snap/bin:$PATH
 
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
+[ "$(tty)" = "/dev/tty1" ] && exec sway
