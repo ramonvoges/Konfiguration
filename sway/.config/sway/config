@@ -6,6 +6,8 @@
 
 ### Variables
 #
+include catppuccin-mocha
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -224,16 +226,27 @@ bindsym $mod+r mode "resize"
 #         inactive_workspace #32323200 #32323200 #5c5c5c
 #     }
 # 
+# bar {
+    # position top
+    # status_command ~/.config/sway/status.sh
+    # font pango:Fira Sans SemiBold 9
+    # colors {
+    #     statusline #ebdbb2
+    #     background #3c3836
+    #     inactive_workspace #282828 #282828 #928374
+    #     focused_workspace #83a598 #458588 #eddbb2
+    # }
+# }
 bar {
-    position top
-    status_command ~/.config/sway/status.sh
-    font pango:Fira Sans SemiBold 9
-    colors {
-        statusline #ebdbb2
-        background #3c3836
-        inactive_workspace #282828 #282828 #928374
-        focused_workspace #83a598 #458588 #eddbb2
-    }
-}
+    swaybar_command waybar
+  }
+
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
 
 include /etc/sway/config.d/*
