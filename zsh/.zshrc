@@ -71,7 +71,7 @@ alias ls='ls --color'
 alias l="exa -lah"
 alias cat="bat --color=always"
 alias fb="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
-alias lz="lazigit"
+alias lz="lazygit"
 # alias raspi="/usr/bin/git --git-dir=$HOME/.raspi/ --work-tree=$HOME"
 
 # fzf costumizations
