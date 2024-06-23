@@ -4,7 +4,7 @@
     border: none;
     font-family: JetBrainsMono Nerd Font Mono, Font Awesome, Roboto, Arial, sans-serif;
     font-size: 14px;
-    color: #ffffff;
+    color: @text;
     border-radius: 20px;
 }
 
@@ -33,6 +33,7 @@ window#waybar {
     margin: 2px 0 0 5px;
 	/* background-color: rgba(0,119,179,0.6); */
 	background-color: @surface1;
+  /* color: @crust; */
 }
 /*-----modules indv----*/
 #workspaces button {
@@ -47,12 +48,16 @@ window#waybar {
 
 #workspaces button.focused {
 	/* background-color: rgba(0,43,51,0.85); */
-	background-color: @surface0;
+	background-color: @blue;
 }
 
-#clock,
+#clock {
+}
 #battery,
-#cpu,
+#cpu {
+  /*  color: @crust; */
+  /* background-color: @sapphire; */
+}
 #memory,
 #temperature,
 #network,
