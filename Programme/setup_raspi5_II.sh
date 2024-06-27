@@ -36,6 +36,10 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm >>$logfile 2>&
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh >>$logfile 2>&1
 echo "eval '$(zoxide init --cmd cd zsh)'" >>~/.zshrc
 
+# Cliphist for Sway
+go install go.senan.xyz/cliphist@latest
+ln -s ~/go/bin/cliphist ~/.local/bin
+
 # Installing Docker
 curl -sSL https://get.docker.com | sh >>$logfile 2>&1
 sudo usermod -aG docker $USER

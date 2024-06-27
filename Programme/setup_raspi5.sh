@@ -120,6 +120,7 @@ install_package exa
 install_package fzf
 install_package fd-find
 install_package tmux
+install_package wl-clipboard
 
 # LaTeX installieren
 
