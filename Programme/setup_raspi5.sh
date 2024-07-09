@@ -13,16 +13,16 @@ sudo apt -y upgrade >>$logfile 2>&1
 
 # Funktion zum Prüfen und Installieren von Paketen
 install_package() {
-	package=$1
-	if ! dpkg -s $package >/dev/null 2>&1; then
-		echo "Installing $package..."
-		sudo apt install -y $package >>$logfile 2>&1
-		if [ $? -ne 0 ]; then
-			echo "Error installing $package. See $logfile for details."
-		fi
-	else
-		echo "$package is already installed."
-	fi
+  package=$1
+  if ! dpkg -s $package >/dev/null 2>&1; then
+    echo "Installing $package..."
+    sudo apt install -y $package >>$logfile 2>&1
+    if [ $? -ne 0 ]; then
+      echo "Error installing $package. See $logfile for details."
+    fi
+  else
+    echo "$package is already installed."
+  fi
 }
 
 # zsh installieren
@@ -39,42 +39,42 @@ mkdir $HOME/notebooks
 
 # Nerd Fonts installieren
 if [ ! -d "/usr/share/fonts/truetype/FiraCode" ]; then
-	echo "Installing FiraCode from Nerd Fonts..."
-	sudo mkdir /usr/share/fonts/truetype/FiraCode
-	curl -fLo "$HOME/Downloads/FiraCode.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
-	sudo unzip /home/ramon/Downloads/FiraCode.zip -d /usr/share/fonts/truetype/FiraCode/ >>$logfile 2>&1
-	if [ $? -ne 0 ]; then
-		echo "Error installing FiraCode from Nerd Fonts. See $logfile for details."
-	fi
-	sudo fc-cache -fv >>$logfile 2>&1
+  echo "Installing FiraCode from Nerd Fonts..."
+  sudo mkdir /usr/share/fonts/truetype/FiraCode
+  curl -fLo "$HOME/Downloads/FiraCode.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
+  sudo unzip /home/ramon/Downloads/FiraCode.zip -d /usr/share/fonts/truetype/FiraCode/ >>$logfile 2>&1
+  if [ $? -ne 0 ]; then
+    echo "Error installing FiraCode from Nerd Fonts. See $logfile for details."
+  fi
+  sudo fc-cache -fv >>$logfile 2>&1
 else
-	echo "FiraCode from Nerd Fonts are already installed."
+  echo "FiraCode from Nerd Fonts are already installed."
 fi
 
 if [ ! -d "/usr/share/fonts/truetype/SauceCodePro" ]; then
-	echo "Installing SauceCodePro from Nerd Fonts..."
-	sudo mkdir /usr/share/fonts/truetype/SauceCodePro
-	curl -fLo "$HOME/Downloads/SourceCodePro.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/SourceCodePro.zip
-	sudo unzip /home/ramon/Downloads/SourceCodePro.zip -d /usr/share/fonts/truetype/SauceCodePro/ >>$logfile 2>&1
-	if [ $? -ne 0 ]; then
-		echo "Error installing SauceCodePro from Nerd Fonts. See $logfile for details."
-	fi
-	sudo fc-cache -fv >>$logfile 2>&1
+  echo "Installing SauceCodePro from Nerd Fonts..."
+  sudo mkdir /usr/share/fonts/truetype/SauceCodePro
+  curl -fLo "$HOME/Downloads/SourceCodePro.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/SourceCodePro.zip
+  sudo unzip /home/ramon/Downloads/SourceCodePro.zip -d /usr/share/fonts/truetype/SauceCodePro/ >>$logfile 2>&1
+  if [ $? -ne 0 ]; then
+    echo "Error installing SauceCodePro from Nerd Fonts. See $logfile for details."
+  fi
+  sudo fc-cache -fv >>$logfile 2>&1
 else
-	echo "SauceCodePro from Nerd Fonts are already installed."
+  echo "SauceCodePro from Nerd Fonts are already installed."
 fi
 
 if [ ! -d "/usr/share/fonts/truetype/JetBrainsMono" ]; then
-	echo "Installing JetBrainsMono from Nerd Fonts..."
-	sudo mkdir /usr/share/fonts/truetype/JetBrainsMono
-	curl -fLo "$HOME/Downloads/JetBrainsMono.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
-	sudo unzip /home/ramon/Downloads/JetBrainsMono.zip -d /usr/share/fonts/truetype/JetBrainsMono/ >>$logfile 2>&1
-	if [ $? -ne 0 ]; then
-		echo "Error installing JetBrainsMono from Nerd Fonts. See $logfile for details."
-	fi
-	sudo fc-cache -fv >>$logfile 2>&1
+  echo "Installing JetBrainsMono from Nerd Fonts..."
+  sudo mkdir /usr/share/fonts/truetype/JetBrainsMono
+  curl -fLo "$HOME/Downloads/JetBrainsMono.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
+  sudo unzip /home/ramon/Downloads/JetBrainsMono.zip -d /usr/share/fonts/truetype/JetBrainsMono/ >>$logfile 2>&1
+  if [ $? -ne 0 ]; then
+    echo "Error installing JetBrainsMono from Nerd Fonts. See $logfile for details."
+  fi
+  sudo fc-cache -fv >>$logfile 2>&1
 else
-	echo "JetBrainsMono from Nerd Fonts are already installed."
+  echo "JetBrainsMono from Nerd Fonts are already installed."
 fi
 
 # Python-Pakete installieren
@@ -121,6 +121,7 @@ install_package fzf
 install_package fd-find
 install_package tmux
 install_package wl-clipboard
+install_package nala
 
 # LaTeX installieren
 
@@ -143,25 +144,25 @@ git config --global user.name "Ramon Voges"
 # raspi config --local status.showUntrackedFiles no
 git clone --bare https://github.com/ramonvoges/raspi.git $HOME/.raspi >>$logfile 2>&1
 function raspi {
-	/usr/bin/git --git-dir=$HOME/.raspi/ --work-tree=$HOME $@
+  /usr/bin/git --git-dir=$HOME/.raspi/ --work-tree=$HOME $@
 }
 mkdir -p .config-backup >>$logfile 2>&1
 raspi checkout
 if [ $? = 0 ]; then
-	echo "Checked out config."
+  echo "Checked out config."
 else
-	echo "Backing up pre-existing dot files."
-	raspi checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{} >>$logfile 2>&1
+  echo "Backing up pre-existing dot files."
+  raspi checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{} >>$logfile 2>&1
 fi
 raspi checkout >>$logfile 2>&1
 raspi config status.showUntrackedFiles no
 
 # Wallpaper kopieren
 if [ -f "$HOME/Pictures/background03.png" ]; then
-	echo "Copying wallpaper..."
-	sudo cp $HOME/Pictures/background03.png /usr/share/rpd-wallpaper/
+  echo "Copying wallpaper..."
+  sudo cp $HOME/Pictures/background03.png /usr/share/rpd-wallpaper/
 else
-	echo "Wallpaper file not found."
+  echo "Wallpaper file not found."
 fi
 
 # Theme für btop kopieren
