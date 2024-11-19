@@ -72,6 +72,7 @@ alias l="exa -lah"
 alias cat="bat --color=always"
 alias fb="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias lz="lazygit"
+alias occ="sudo -u www-data php /var/www/html/nextcloud/occ"
 # alias raspi="/usr/bin/git --git-dir=$HOME/.raspi/ --work-tree=$HOME"
 
 # fzf costumizations
