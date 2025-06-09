@@ -18,6 +18,7 @@ frei0r
 fribidi
 fzf
 gettext
+gh
 giflib
 glib
 gmp
