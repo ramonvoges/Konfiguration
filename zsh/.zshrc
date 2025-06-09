@@ -5,17 +5,40 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Set the directory we want to store zinit and plugins
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-# Download zinit, if it is not installed yet
-if [ ! -d "$ZINIT_HOME" ]; then
-  mkdir -p "$(dirname $ZINIT_HOME)"
-  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
 fi
 
-# Load zinit
-source "${ZINIT_HOME}/zinit.zsh"
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+# # Set the directory we want to store zinit and plugins
+# ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+#
+# # Download zinit, if it is not installed yet
+# if [ ! -d "$ZINIT_HOME" ]; then
+#   mkdir -p "$(dirname $ZINIT_HOME)"
+#   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+# fi
+#
+# # Load zinit
+# source "${ZINIT_HOME}/zinit.zsh"
 
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -29,10 +52,10 @@ zinit light joshskidmore/zsh-fzf-history-search
 zinit light Aloxaf/fzf-tab
 
 # Keybinding (run 'cat' to determin the code)
-bindkey "^[[1;5D" backward-word # Move one word left with ctrl-left
-bindkey "^[[1;5C" forward-word # Move one word right with ctrl-right
-bindkey "^[[1;5A" history-search-backward # Search history for the same command backward with ctrl-up
-bindkey "^[[1;5B" history-search-forward # Search history for the same command forward with ctrl-down
+bindkey "^[[1;3D" backward-word # Move one word left with Option-left
+bindkey "^[[1;3C" forward-word # Move one word right with Option-right
+bindkey "^[[1;3A" history-search-backward # Search history for the same command backward with Option-up
+bindkey "^[[1;3B" history-search-forward # Search history for the same command forward with Option-down
 
 # History
 HISTSIZE=10000
@@ -68,7 +91,7 @@ zinit cdreplay -q
 
 # Aliases
 alias ls='ls --color'
-alias l="exa -lah"
+alias l="eza -lah"
 alias cat="bat --color=always"
 alias fb="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias lz="lazygit"
@@ -87,9 +110,7 @@ else
 fi
 
 # Additions to PATH
-# path=('$HOME/.local/bin' $path)
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
-export PATH=/snap/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
@@ -104,5 +125,5 @@ eval "$(zoxide init --cmd cd zsh)"
 # 	rm -f -- "$tmp"
 # }
 
-# Sway
-[ "$(tty)" = "/dev/tty1" ] && exec sway
+
+. "$HOME/.local/bin/env"
