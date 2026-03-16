@@ -96,6 +96,7 @@ alias cat="bat --color=always"
 alias fb="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias lz="lazygit"
 alias occ="sudo -u www-data php /var/www/html/nextcloud/occ"
+alias icloud="cd /Users/ramon/Library/Mobile\ Documents/com~apple~CloudDocs/"
 # alias raspi="/usr/bin/git --git-dir=$HOME/.raspi/ --work-tree=$HOME"
 
 # fzf costumizations
@@ -127,3 +128,11 @@ eval "$(zoxide init --cmd cd zsh)"
 
 
 . "$HOME/.local/bin/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/ramon/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# Emacs
+export PATH="$HOME/.config/emacs/bin:$PATH"
+
