@@ -137,5 +137,5 @@ export PATH="$PATH:/Users/ramon/.lmstudio/bin"
 export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # Midnight Commander auf dem Mac
-export mc="LANG=de_DE.UTF-8 mc --nosubshell"
+alias mc="LANG=de_DE.UTF-8 mc --nosubshell"
 
